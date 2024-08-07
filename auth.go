@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -26,8 +25,4 @@ func NewAuth() *Auth {
 
 func SetDefault(a *Auth) {
 	auth = a
-}
-
-func (auth *Auth) tokenId(t string) []byte {
-	return []byte(fmt.Sprintf("%s:token:%s", auth.TokenName, t))
 }

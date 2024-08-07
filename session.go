@@ -23,7 +23,7 @@ func (t *Token) delete() error {
 	t.Lock()
 	defer t.Unlock()
 
-	return auth.Store.Delete([]byte(t.Id))
+	return auth.Store.Delete(t.Id)
 }
 
 func (t *Token) update() error {
@@ -37,14 +37,14 @@ func (t *Token) update() error {
 	if err != nil {
 		return err
 	}
-	return auth.Store.Put([]byte(t.Id), data, t.Timeout)
+	return auth.Store.Put(t.Id, data, t.Timeout)
 }
 
 func (t *Token) updateTimeout() error {
 	t.Lock()
 	defer t.Unlock()
 
-	return auth.Store.UpdateTimeout([]byte(t.Id), t.Timeout)
+	return auth.Store.UpdateTimeout(t.Id, t.Timeout)
 }
 
 type Session struct {
@@ -64,7 +64,7 @@ func (s *Session) delete() error {
 	s.Lock()
 	defer s.Unlock()
 
-	return auth.Store.Delete([]byte(s.Id))
+	return auth.Store.Delete(s.Id)
 }
 
 func (s *Session) update() error {
@@ -78,7 +78,7 @@ func (s *Session) update() error {
 	if err != nil {
 		return err
 	}
-	return auth.Store.Put([]byte(s.Id), data, NeverExpire)
+	return auth.Store.Put(s.Id, data, NeverExpire)
 }
 
 func (s *Session) cleanToken() error {
@@ -86,7 +86,7 @@ func (s *Session) cleanToken() error {
 	defer s.Unlock()
 
 	for i, token := range s.Tokens {
-		data, err := auth.Store.Get([]byte(token.Id))
+		data, err := auth.Store.Get(token.Id)
 		if err != nil || data == nil {
 			s.Tokens = append(s.Tokens[:i], s.Tokens[i+1:]...)
 		}

@@ -15,7 +15,7 @@ func (auth *Auth) readSession(id int64) (*Session, error) {
 		sessionId = fmt.Sprintf("%s:session:%d", auth.TokenName, id)
 	)
 
-	data, err = auth.Store.Get([]byte(sessionId))
+	data, err = auth.Store.Get(sessionId)
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +39,7 @@ func (auth *Auth) createSession(id int64, token *Token) (*Session, error) {
 		sessionId = fmt.Sprintf("%s:session:%d", auth.TokenName, id)
 	)
 
-	data, err = auth.Store.Get([]byte(sessionId))
+	data, err = auth.Store.Get(sessionId)
 	if err != nil {
 		return nil, err
 	}

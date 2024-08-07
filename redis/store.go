@@ -16,26 +16,26 @@ func NewStore(config Config) (store *Store, err error) {
 	return
 }
 
-func (store *Store) Get(key []byte) ([]byte, error) {
+func (store *Store) Get(key string) ([]byte, error) {
 	return nil, nil
 }
 
-func (store *Store) Put(key []byte, value []byte, timeout time.Duration) error {
+func (store *Store) Put(key string, value []byte, timeout time.Duration) error {
 	return nil
 }
 
-func (store *Store) Delete(key []byte) error {
+func (store *Store) Delete(key string) error {
 	return nil
 }
 
-func (store *Store) Update(key []byte, value []byte) error {
+func (store *Store) Update(key string, value []byte) error {
 	return nil
 }
 
-func (store *Store) CheckTimeout(key []byte) (time.Duration, error) {
+func (store *Store) CheckTimeout(key string) (time.Duration, error) {
 	return 0, nil
 }
 
-func (store *Store) UpdateTimeout(key []byte, timeout time.Duration) error {
+func (store *Store) UpdateTimeout(key string, timeout time.Duration) error {
 	return nil
 }

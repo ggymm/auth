@@ -21,7 +21,7 @@ func (auth *Auth) newToken() *Token {
 }
 
 func (auth *Auth) readToken(token string) (*Token, error) {
-	key := auth.tokenId(token)
+	key := fmt.Sprintf("%s:token:%s", auth.TokenName, token)
 	data, err := auth.Store.Get(key)
 	if err != nil {
 		return nil, err
